@@ -52,6 +52,22 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+        $pro1 = 5.99;
+        $pro2 = 1.99;
+        $pro3 = 2.50;
+
+        $quan1 = 2;
+        $quan2 = 3;
+        $quan3 = 5;
+
+        $total1 = $pro1 * $quan1; 
+        $total2 = $pro2 * $quan2; 
+        $total3 = $pro3 * $quan3; 
+
+        $totcost = $total1 + $total2 + $total3;
+        $full = $totcost * 0.9;
+echo $full
         ?>
     </div>
 
@@ -67,6 +83,40 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+        $isStudent = TRUE;
+        $hasDiscount = FALSE;
+        $isPremiumMember = TRUE;
+
+        // if($isStudent){
+        //     $studentVar = "Yes";
+        // }
+
+        // else{
+        //     $studentVar = "no";
+        // }
+        $studentVar = ($isStudent) ? "Yes" : "No";
+
+        if($hasDiscount){
+            $discountVar = "Yes";
+        }
+
+        else{
+            $discountVar = "no";
+        }
+        
+        if($isPremiumMember){
+            $premiumVar = "Yes";
+        }
+
+        else{
+            $premiumVar = "no";
+        }
+
+        echo "is student a premium member? $premiumVar,<br/> " . 
+            "Has the student got a disocunt? $discountVar,<br/> " . 
+            "are they a student? " . (($isStudent) ? 'Yes' : 'No');
+
         ?>
     </div>
 

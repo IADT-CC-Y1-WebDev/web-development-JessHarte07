@@ -27,6 +27,25 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+        $age = 30;
+
+        if ($age < 13){
+            echo "$age is a child";
+        }
+
+        if ($age < 20){
+            echo "$age is a teenagers";
+        }
+
+        if ($age < 65){
+            echo "$age is a adult";
+        }
+
+        else{
+            echo "$age is a senior";
+        }
+
         ?>
     </div>
 
@@ -43,6 +62,45 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+        $Weekday =1;
+
+        if($Weekday = 1){
+            $day = "Monday ";
+            $week = "weekday";
+        }
+
+        if($Weekday = 2){
+            $day = "Tuseday ";
+            $week = "weekday";
+        }
+        
+        if($Weekday = 3){
+            $day = "Wednesday ";
+            $week = "weekday";
+        }
+
+        if($Weekday = 4){
+            $day = "Thursday ";
+            $week = "weekday";
+        }
+
+        if($Weekday = 5){
+            $day = "Friday ";
+            $week = "weekday";
+        }
+
+        if($Weekday = 6){
+            $day = "Saturday ";
+            $week = "weekend";
+        }
+
+        if($Weekday = 1){
+            $day = "Sunday ";
+            $week = "weekend";
+        }
+
+        Echo $day, $week
         ?>
     </div>
 
@@ -58,6 +116,23 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+        
+        $multiply = 7;
+        
+
+        // while ($multiply <=10 ) {
+        //     $result= $multiply * $number;
+        //     echo "7 x $multiply = $result <br/>";
+        //     $multiply = $multiply + 1;
+        // }
+
+        for ($i = 0; $i <= 10; $i++){
+        
+            $result = $multiply *$i;
+            echo "$multiply x $i = $result <br/>";
+        }
+
         ?>
     </div>
 
@@ -73,6 +148,18 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+        $time = 10;
+
+        while ($time >= 0){
+            if($time > 0) {
+                echo "$time<br/>";
+            }
+            else {
+                echo "Blast off!";
+            }
+            $time = $time - 1;
+        }
         ?>
     </div>
 
