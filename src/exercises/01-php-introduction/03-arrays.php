@@ -27,6 +27,18 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+        $movies =[
+            "scream1",
+            "scream2",
+            "scream3",
+            "scream4",
+            "scream5",
+        ];
+
+        for ($i = 0; $i != count($movies); $i++){
+            echo "Movie " . ($i+1) . ":" . $movies[$i]. "<br/>";
+        };
         ?>
     </div>
 
