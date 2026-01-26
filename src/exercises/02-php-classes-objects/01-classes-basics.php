@@ -26,6 +26,7 @@
         Then, in the code block below, use <code>require_once</code> to include your class file.
         Create an instance of the class, set the properties, and display them.
     </p>
+    
 
     <p class="output-label">Output:</p>
     <div class="output">
