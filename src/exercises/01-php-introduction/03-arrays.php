@@ -54,6 +54,20 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+        $students = [
+            "name" => "Jessie Harte",
+            "studentId" =>  "N00254548",
+            "course" => "Creative Computing",
+            "grade" => "1"
+        ];
+
+        $text =
+           "{$students['name']}'s student ID is {$students['studentId']}. ". "She is in the course {$students['course']} in year {$students['grade']}.";
+
+        print("<p>$text</p>");
+
+
         ?>
     </div>
 
@@ -70,6 +84,19 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+        $Capitals = [
+    "Ireland" => "Dublin",
+    "England" => "London",
+    "Japan" => "Tokyo",
+    "India" => "New Dehli"
+];
+
+echo "<ul>";
+foreach ($Capitals as $country => $cap) {
+    echo "<li>$country's capital is $cap</li>";
+}
+echo "</ul>";
         ?>
     </div>
 
@@ -87,6 +114,30 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+        $menus = [
+    'Drink' => [
+        'Vodka redbull' => "€7.50",
+        'Sambuca' => "€12.75",
+        'Grey goose' => "€9.00",
+        
+    ],
+    'Main' => [
+        'BBQ pulled pork buns' => "€24.00",
+        'Full Irish' => "€12.00",
+        'Borscht' => "€6.00",
+    ]
+];
+
+foreach ($menus as $section => $items) {
+    echo "<p>" . ucfirst($section) . " menus:</p>";
+    echo "<ul>";
+    foreach ($items as $key => $value) {
+        echo "<li>$key\t($value)</li>";
+    }
+    echo "</ul>";
+}
+
         ?>
     </div>
 
