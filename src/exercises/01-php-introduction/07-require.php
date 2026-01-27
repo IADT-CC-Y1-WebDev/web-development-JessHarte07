@@ -22,6 +22,9 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+        
+
         ?>
     </div>
 
@@ -33,6 +36,8 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+        
         ?>
     </div>
 
