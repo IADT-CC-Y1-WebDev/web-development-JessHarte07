@@ -1,0 +1,192 @@
+body {
+	font-family: "IBM Plex Sans";
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.5em;
+	background-color: #fff;
+}
+
+.cards {
+	display: flex;
+	gap: 40px 20px;
+	flex-wrap: wrap;
+}
+
+.card {
+	background-color: #f4f4f4;
+	padding: 16px;
+	border-radius: 7px;
+	border: 1px solid #bcbcbc;
+	width: 285px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.card h2 {
+	font-size: 28px;
+	line-height: 32px;
+	font-family: "IBM Plex Serif";
+	margin-bottom: 12px;
+	font-weight: 300;
+	color: #016040;
+}
+
+.card p {
+	margin-bottom: 10px;
+}
+
+.card .actions {
+	display: flex;
+	gap: 8px;
+	justify-content: flex-end;
+}
+
+.card .actions a {
+	font-weight: 600;
+	color: #b0acfa;
+	font-size: 13px;
+	text-transform: uppercase;
+}
+
+.card .actions a:hover {
+	color: #2c22df;
+}
+
+.card img {
+	width: 100%;
+	margin-bottom: 10px;
+	object-fit: cover;
+	border: 1px solid #7c75f1;
+	height: 340px;
+}
+
+.filters {
+	background-color: #f2f2f2;
+	padding: 10px;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.filters form {
+	display: flex;
+	gap: 15px;
+	align-items: center;
+	flex-direction: row;
+}
+
+.filters form label {
+	font-size: 12px;
+}
+
+.filters form input {
+	font-size: 12px;
+	height: 30px;
+	padding: 5px;
+}
+
+.filters form select {
+	font-size: 12px;
+	height: 30px;
+	padding: 5px;
+}
+
+.filters form button {
+	font-size: 13px;
+	background-color: #084108;
+	padding: 5px 10px;
+	color: #ececec;
+	border: 1px solid #4bff3c;
+	border-radius: 5px;
+}
+
+.header {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+}
+
+.button {
+	font-size: 13px;
+	background-color: #123991;
+	padding: 5px 10px;
+	color: #ececec;
+	border: 1px solid #4bff3c;
+	border-radius: 5px;
+}
+
+.hCard {
+	background-color: #f4f4f4;
+	padding: 16px;
+	border-radius: 7px;
+	border: 1px solid #bcbcbc;
+	width: 800px;
+	display: flex;
+	gap: 20px;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.hCard h2 {
+	font-size: 36px;
+	line-height: 45px;
+	font-family: "IBM Plex Serif";
+	margin-bottom: 12px;
+	font-weight: 300;
+	color: #016040;
+}
+
+.hCard p {
+	margin-bottom: 10px;
+}
+
+.hCard .actions {
+	display: flex;
+	gap: 8px;
+	justify-content: flex-end;
+}
+
+.hCard .actions a {
+	font-weight: 600;
+	color: #b0acfa;
+	font-size: 13px;
+	text-transform: uppercase;
+}
+
+.hCard .actions a:hover {
+	color: #2c22df;
+}
+
+.hCard img {
+	width: 340px;
+	margin-bottom: 10px;
+	object-fit: cover;
+	border: 1px solid #7c75f1;
+	height: 340px;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	/* align-items: center; */
+}
+
+.input {
+	display: flex;
+	gap: 20px;
+}
+
+.input p {
+	margin-top: 3px;
+	color: red;
+	font-size: 14px;
+}
+
+.input label.special {
+	width: 108px;
+	display: flex;
+	justify-content: flex-end;
+	color: #252525;
+	font-weight: 900;
+}
