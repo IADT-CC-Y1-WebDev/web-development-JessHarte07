@@ -39,16 +39,11 @@
 
         require_once 'classes/Student.php';
 
+        $student1 = new Student("Jessica Murphy Harte", "N00254548");
 
-        $student1 = new Student();
+        echo "Student Name: " . $student1->getName() . "<br>";
+        echo "Student Number: " . $student1->getNumber();
 
-
-        $student1->name = "Jessica Murphy Harte";
-        $student1->number = "N00254548";
-
-
-        echo "Student Name: " . $student1->name . "<br>";
-        echo "Student Number: " . $student1->number;
         ?>
     </div>
 
@@ -78,8 +73,8 @@
         $student2 = new Student("Catra Greyskull", "N00254549");
 
         
-        echo "Student 1: Name = " . $student1->name . ", Number = " . $student1->number . "<br>";
-        echo "Student 2: Name = " . $student2->name . ", Number = " . $student2->number;
+        echo "Student 1: Name is: " . $student1->getName() ."<br> Number: " . $student1->getNumber() . "<br>";
+        echo "Student 2: Name is: " . $student2->getName() . "<br> Number: " . $student2->getNumber();
         
 
         ?>
@@ -102,6 +97,15 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Student.php';
+
+        require_once 'classes/Student.php';
+
+        $student = new Student("Jessica Murphy Harte", "N00254548");
+
+
+        echo "Student " . $student->getName() . " has number " . $student->getNumber();
+        
+
         ?>
     </div>
 
