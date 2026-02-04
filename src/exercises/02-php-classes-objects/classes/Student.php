@@ -1,8 +1,8 @@
 <?php
 
 class Student {
-    private $name;
-    private $number;
+    protected $name;
+    protected $number;
 
     public function __construct($name, $number) {
         $this->name = $name;
