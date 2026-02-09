@@ -88,7 +88,7 @@ $formats = [
                  ===========================================================
                  TODO: Repopulate title field
             -->
-            <input type="text" id="title" name="title" value="">
+            <input type="text" id="title" name="title" value="<?= old ('title'); ?>">
 
             <!-- ===========================================================
                  STEP 5: Display Errors
