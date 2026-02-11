@@ -31,7 +31,7 @@ try {
     // =========================================================================
     // TODO: First, just dump the posted data to see what's submitted
 
-    dd($_POST);
+    // dd($_POST);
 
 
     // =========================================================================
@@ -65,9 +65,10 @@ try {
         'isbn' => $_POST['isbn'] ?? null,
         'format_ids' => $_POST['format_ids'] ?? null,
         'description' => $_POST['description'] ?? null,
+        'cover' => $_FILES['cover'] ?? null,
         ];
 
-        dd($data);
+        // dd($data);
 
 
     // =========================================================================
@@ -87,6 +88,8 @@ try {
         'isbn' => "required|notempty|min:13|max:13",
         'format_ids' =>"required|notempty|array|min:1|max:4",
         'description' =>"required|notempty|min:10|max:255",
+        'cover' =>"required|file|imagemimes.jpg,jpeg,png|max_file_size:5242880",
+
         ];
 
 
@@ -101,8 +104,10 @@ try {
         dd($validator->errors(),true );
     }
 
+    $uploader = new ImageUpload();
+    $imageFilname = $uploader->process($_FILES['cover']);
 
-    echo "validator succesful";
+    // echo "validator sucpassed!cesful, you can now process the data and save it into the database.";
 
 
     // =========================================================================
@@ -129,6 +134,9 @@ try {
     // =========================================================================
     // TODO: Clear form data on success (before redirect)
 
+    clearFormData();
+    clearFormErrors();
+
 
     // =========================================================================
     // STEP 8: Flash Messages
@@ -136,6 +144,9 @@ try {
     // =========================================================================
     // TODO: On successful registration, set a success flash message and 
     // redirect back to the form
+    setFlashMessage('success', 'Form Validated successfully!');
+
+    redirect("success.php");
 }
 catch (Exception $e) {
 
@@ -166,6 +177,7 @@ catch (Exception $e) {
     // See: /examples/04-php-forms/step-08-flash-messages/
     // =========================================================================
     // TODO: On validation error, you set an error flash message
+    setFlashMessage('error', 'Form Validation Failed!');
     redirect('book_create.php');
     
 }
