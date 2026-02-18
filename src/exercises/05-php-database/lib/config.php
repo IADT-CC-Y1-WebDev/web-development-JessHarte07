@@ -22,6 +22,10 @@ define('DB_OPTIONS', [
     PDO::ATTR_EMULATE_PREPARES   => false,
 ]);
 
+
+$db = new PDO(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);
+echo "Connected using config constants!";
+
 // Autoloader for classes
 spl_autoload_register(function ($class) {
     $classFile = __DIR__ . '/../classes/' . $class . '.php';

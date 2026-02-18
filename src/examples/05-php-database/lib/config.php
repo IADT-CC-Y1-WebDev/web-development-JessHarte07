@@ -8,7 +8,7 @@
 
 // Database connection settings
 define('DB_HOST', 'mysql-container');
-define('DB_NAME', 'testdb');
+define('DB_NAME', 'games_db');
 define('DB_USER', 'testuser');
 define('DB_PASS', 'mysecret');
 define('DB_CHARSET', 'utf8mb4');
