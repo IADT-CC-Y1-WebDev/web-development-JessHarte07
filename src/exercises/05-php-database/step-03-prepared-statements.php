@@ -82,18 +82,18 @@ catch (PDOException $e) {
             // 3. Loop through and display results
 
             try{
-            $author = 'george';
+            $search = 'george';
 
             // Prepare the statement with a named parameter
             $stmt = $db->prepare("SELECT * FROM books WHERE author LIKE :search");
 
             // Execute with an associative array of values
-            $stmt->execute(['search' => '$author']);
+            $stmt->execute(['search' => "%$search%"]);
 
             // Fetch the result
             $books = $stmt->fetchAll();
 
-            echo "<p>found " . count($book) . " books</p>";
+            echo "<p>found " . count($books) . " books</p>";
 
             foreach ($books as $book) {
                     echo "<li>" . ($book['title']) . " (" . $book['author'] . ")</li>";
