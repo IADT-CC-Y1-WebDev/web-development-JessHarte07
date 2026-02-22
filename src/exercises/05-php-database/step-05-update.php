@@ -47,6 +47,38 @@ catch (PDOException $e) {
             // 3. Execute with new description + timestamp
             // 4. Check rowCount()
             // 5. Fetch and display updated book
+            $stmt = $db->prepare("SELECT * FROM books WHERE id = :id");
+
+            
+            $stmt->execute(['id' => 1]);
+
+            
+            $book = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($book) {
+                echo "<h3>Book Details (ID 1)</h3>";
+                echo "<p><strong>Title:</strong> " . htmlspecialchars($book['title']) . "</p>";
+                echo "<p><strong>Author:</strong> " . htmlspecialchars($book['author']) . "</p>";
+                echo "<p><strong>Publisher ID:</strong> " . htmlspecialchars($book['publisher_id']) . "</p>";
+                echo "<p><strong>Year:</strong> " . htmlspecialchars($book['year']) . "</p>";
+                echo "<p><strong>Description:</strong> " . htmlspecialchars($book['description']) . "</p>";
+            } else {
+                echo "<p class='error'>No book found with ID 1.</p>";
+            }
+
+
+            $stmt = $db->prepare("
+                UPDATE books
+                SET description = :description
+                WHERE id = :id
+            ");
+
+            $stmt->execute([
+                'description' => 'meow meow.',
+                'id' => 1
+            ]);
+
+            echo "Updated " . $stmt->rowCount() . " row(s)";
             ?>
         </div>
     </div>
