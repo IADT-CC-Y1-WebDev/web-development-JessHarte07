@@ -12,7 +12,7 @@
 // - year (INT)
 // - isbn (VARCHAR)
 // - description (TEXT)
-// - cover_filename (VARCHAR)
+// -  (VARCHAR)
 //
 // Required methods:
 // - __construct($data = []) - Hydrate object from data array
@@ -33,7 +33,7 @@ class Book
     public $year;
     public $isbn;
     public $description;
-    public $cover_filename;
+    public $;
 
     // private $db property for database connection
     private $db;

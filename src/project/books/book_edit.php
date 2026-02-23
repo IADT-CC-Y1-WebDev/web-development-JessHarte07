@@ -7,6 +7,25 @@ require_once 'php/lib/utils.php';
 startSession();
 
 try {
+    if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+        throw new Exception('Invalid request method.');
+    }
+    if (!array_key_exists('id', $_GET)) {
+        throw new Exception('No book ID provided.');
+    }
+    $id = $_GET['id'];
+
+    $book = Book::findById($id);
+    if ($book === null) {
+        throw new Exception("Book not found.");
+    }
+
+    $bookPlatforms = Platform::findByBook($book->id);
+    $bookPlatformsIds = [];
+    foreach ($bookPlatforms as $platform) {
+        $bookPlatformsIds[] = $platform->id;
+    }
+
     $genres = Genre::findAll();
     $platforms = Platform::findAll();
 }
@@ -19,7 +38,7 @@ catch (PDOException $e) {
 <html lang="en">
     <head>
         <?php include 'php/inc/head_content.php'; ?>
-        <title>View Game</title>
+        <title>Edit Book</title>
     </head>
     <body>
         <div class="container">
@@ -27,22 +46,25 @@ catch (PDOException $e) {
                 <?php require 'php/inc/flash_message.php'; ?>
             </div>
             <div class="width-12">
-                <h1>Create Game</h1>
+                <h1>Edit Book</h1>
             </div>
             <div class="width-12">
-                <form action="game_store.php" method="POST" enctype="multipart/form-data">
+                <form action="book_update.php" method="POST" enctype="multipart/form-data">
+                    <div class="input">
+                        <input type="hidden" name="id" value="<?= h($book->id) ?>">
+                    </div>
                     <div class="input">
                         <label class="special" for="title">Title:</label>
                         <div>
-                            <input type="text" id="title" name="title" value="<?= old('title') ?>" required>
+                            <input type="text" id="title" name="title" value="<?= old('title', $book->title) ?>" required>
                             <p><?= error('title') ?></p>
                         </div>
                     </div>
                     <div class="input">
-                        <label class="special" for="release_date">Release Year:</label>
+                        <label class="special" for="author">Release Year:</label>
                         <div>
-                            <input type="date" id="release_date" name="release_date" value="<?= old('release_date') ?>" required>
-                            <p><?= error('release_date') ?></p>
+                            <input type="date" id="author" name="author" value="<?= old('author', $book->author) ?>" required>
+                            <p><?= error('author') ?></p>
                         </div>
                     </div>
                     <div class="input">
@@ -50,7 +72,7 @@ catch (PDOException $e) {
                         <div>
                             <select id="genre_id" name="genre_id" required>
                                 <?php foreach ($genres as $genre) { ?>
-                                    <option value="<?= h($genre->id) ?>" <?= chosen('genre_id', $genre->id) ? "selected" : "" ?>>
+                                    <option value="<?= h($genre->id) ?>" <?= chosen('genre_id', $genre->id, $book->genre_id) ? "selected" : "" ?>>
                                         <?= h($genre->name) ?>
                                     </option>
                                 <?php } ?>
@@ -61,7 +83,7 @@ catch (PDOException $e) {
                     <div class="input">
                         <label class="special" for="description">Description:</label>
                         <div>
-                            <textarea id="description" name="description" required><?= old('description') ?></textarea>
+                            <textarea id="description" name="description" required><?= old('description', $book->description) ?></textarea>
                             <p><?= error('description') ?></p>
                         </div>
                     </div>
@@ -74,23 +96,24 @@ catch (PDOException $e) {
                                         id="platform_<?= h($platform->id) ?>" 
                                         name="platform_ids[]" 
                                         value="<?= h($platform->id) ?>"
-                                        <?= chosen('platform_ids', $platform->id) ? "checked" : "" ?>
-                                        >
+                                        <?= chosen('platform_ids', $platform->id, $bookPlatformsIds) ? "checked" : "" ?>
+                                    >
                                     <label for="platform_<?= h($platform->id) ?>"><?= h($platform->name) ?></label>
                                 </div>
                             <?php } ?>
                         </div>
-                        <p><?= error('platforms_ids') ?></p>
+                        <p><?= error('platform_ids') ?></p>
                     </div>
+                    <div><img src="images/<?= $book->cover_filename ?>" /></div>
                     <div class="input">
-                        <label class="special" for="image">Image (required):</label>
+                        <label class="special" for="image">Image (optional):</label>
                         <div>
-                            <input type="file" id="image" name="image" accept="image/*" required>
+                            <input type="file" id="image" name="image" accept="image/*">
                             <p><?= error('image') ?></p>
                         </div>
                     </div>
                     <div class="input">
-                        <button  class="button" type="submit">Store Game</button>
+                        <button class="button" type="submit">Update Book</button>
                         <div class="button"><a href="index.php">Cancel</a></div>
                     </div>
                 </form>
