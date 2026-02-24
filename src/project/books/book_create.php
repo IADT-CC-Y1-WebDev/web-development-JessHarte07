@@ -7,11 +7,8 @@ require_once 'php/lib/utils.php';
 startSession();
 
 try {
-    $title = Title::findAll();
-    $author = Author::findAll();
-    $year = Year::findAll();
-    $isbn = Isbn::findAll();
-    $description = Description::findAll();
+    $book = Book::findAll();
+    
 }
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
@@ -48,19 +45,9 @@ catch (PDOException $e) {
                             <p><?= error('') ?></p>
                         </div>
                     </div>
-                    <div class="input">
-                        <label class="special" for="genre_id">Genre:</label>
-                        <div>
-                            <select id="genre_id" name="genre_id" required>
-                                <?php foreach ($genres as $genre) { ?>
-                                    <option value="<?= h($genre->id) ?>" <?= chosen('genre_id', $genre->id) ? "selected" : "" ?>>
-                                        <?= h($genre->name) ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                            <p><?= error('genre_id') ?></p>
-                        </div>
-                    </div>
+                    
+
+
                     <div class="input">
                         <label class="special" for="description">Description:</label>
                         <div>
@@ -68,23 +55,8 @@ catch (PDOException $e) {
                             <p><?= error('description') ?></p>
                         </div>
                     </div>
-                    <div class="input">
-                        <label class="special">Platforms:</label>
-                        <div>
-                            <?php foreach ($platforms as $platform) { ?>
-                                <div>
-                                    <input type="checkbox" 
-                                        id="platform_<?= h($platform->id) ?>" 
-                                        name="platform_ids[]" 
-                                        value="<?= h($platform->id) ?>"
-                                        <?= chosen('platform_ids', $platform->id) ? "checked" : "" ?>
-                                        >
-                                    <label for="platform_<?= h($platform->id) ?>"><?= h($platform->name) ?></label>
-                                </div>
-                            <?php } ?>
-                        </div>
-                        <p><?= error('platforms_ids') ?></p>
-                    </div>
+                   
+                    
                     <div class="input">
                         <label class="special" for="image">Image (required):</label>
                         <div>

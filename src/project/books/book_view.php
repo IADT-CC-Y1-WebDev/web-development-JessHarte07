@@ -12,14 +12,14 @@ try {
     if ($book === null) {
         die("<p>Error: Book not found.</p>");
     }
+    // $year = year::findById($book->year);
 
-    $year = year::findById($book->year);
-    $platforms = Platform::findByBook($book->id);
+    // $platforms = Platform::findByBook($book->id);
 
-    $platformNames = [];
-    foreach ($platforms as $platform) {
-        $platformNames[] = htmlspecialchars($platform->name);
-    }
+    // $platformNames = [];
+    // foreach ($platforms as $platform) {
+    //     $platformNames[] = htmlspecialchars($platform->name);
+    // }
 } 
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
@@ -53,10 +53,10 @@ catch (PDOException $e) {
 
                     <div class="bottom-content">
                         <h2><?= htmlspecialchars($book->title) ?></h2>
-                        <p>Release Year: <?= htmlspecialchars($book->author) ?></p>
-                        <p>Genre: <?= htmlspecialchars($genre->name) ?></p>
+                        <p>Author: <?= htmlspecialchars($book->author) ?></p>
+                        <p>Year: <?= htmlspecialchars($book->year) ?></p>
                         <p>Description:<br /><?= nl2br(htmlspecialchars($book->description)) ?></p>
-                        <p>Platforms: <?= implode(', ', $platformNames) ?></p>
+                        <!-- <p>Platforms: <?= implode(', ', $platformNames) ?></p> -->
                     </div>
                 </div>
             </div>

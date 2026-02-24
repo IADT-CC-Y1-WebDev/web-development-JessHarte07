@@ -4,7 +4,7 @@ require_once 'php/lib/utils.php';
 
 try {
     $books = Book::findAll();
-    $books = Year::findAll();
+    // $authors = Author::findAll();
     // $genres = Genre::findAll();
     // $platforms = Platform::findAll();
 } 
@@ -34,15 +34,17 @@ catch (PDOException $e) {
                             <input type="text" id="title_filter" name="title_filter">
                         </div>
                         <div>
-                            <label for="genre_filter">Genre:</label>
-                            <select id="genre_filter" name="genre_filter">
-                                <option value="">All Genres</option>
-                                <?php foreach ($genres as $genre) { ?>
+                            <label for="author_filter">Author:</label>
+                            <select id="author_filter" name="author_filter">
+                                <option value="">All Authors</option>
+
+
+                                <!-- <?php foreach ($genres as $genre) { ?>
                                     <option value="<?= h($genre->id) ?>"><?= h($genre->name) ?></option>
-                                <?php } ?>
+                                <?php } ?> -->
                             </select>
                         </div>
-                        <div>
+                        <!-- <div>
                             <label for="platform_filter">Platform:</label>
                             <select id="platform_filter" name="platform_filter">
                                 <option value="">All Platforms</option>
@@ -50,7 +52,9 @@ catch (PDOException $e) {
                                     <option value="<?= h($platform->id) ?>"><?= h($platform->name) ?></option>
                                 <?php } ?>
                             </select>
-                        </div>
+                        </div> -->
+
+                        
                         <div>
                             <button type="button" id="apply_filters">Apply Filters</button>
                             <button type="button" id="clear_filters">Clear Filters</button>

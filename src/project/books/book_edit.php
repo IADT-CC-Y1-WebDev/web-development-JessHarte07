@@ -20,15 +20,15 @@ try {
         throw new Exception("Book not found.");
     }
 
-    $bookPlatforms = Platform::findByBook($book->id);
-    $bookPlatformsIds = [];
-    foreach ($bookPlatforms as $platform) {
-        $bookPlatformsIds[] = $platform->id;
-    }
+//     $bookPlatforms = Platform::findByBook($book->id);
+//     $bookPlatformsIds = [];
+//     foreach ($bookPlatforms as $platform) {
+//         $bookPlatformsIds[] = $platform->id;
+//     }
 
-    $genres = Genre::findAll();
-    $platforms = Platform::findAll();
-}
+//     $genres = Genre::findAll();
+//     $platforms = Platform::findAll();
+   }
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
     redirect('/index.php');
@@ -67,7 +67,7 @@ catch (PDOException $e) {
                             <p><?= error('author') ?></p>
                         </div>
                     </div>
-                    <div class="input">
+                    <!-- <div class="input">
                         <label class="special" for="genre_id">Genre:</label>
                         <div>
                             <select id="genre_id" name="genre_id" required>
@@ -77,9 +77,9 @@ catch (PDOException $e) {
                                     </option>
                                 <?php } ?>
                             </select>
-                            <p><?= error('genre_id') ?></p>
-                        </div>
-                    </div>
+                            <p><?= error('genre_id') ?></p> -->
+                        <!-- </div> -->
+                    <!-- </div> -->
                     <div class="input">
                         <label class="special" for="description">Description:</label>
                         <div>
@@ -87,8 +87,10 @@ catch (PDOException $e) {
                             <p><?= error('description') ?></p>
                         </div>
                     </div>
-                    <div class="input">
-                        <label class="special">Platforms:</label>
+
+
+                    <!-- <div class="input"> -->
+                        <!-- <label class="special">Platforms:</label>
                         <div>
                             <?php foreach ($platforms as $platform) { ?>
                                 <div>
@@ -103,7 +105,9 @@ catch (PDOException $e) {
                             <?php } ?>
                         </div>
                         <p><?= error('platform_ids') ?></p>
-                    </div>
+                    </div> -->
+
+                    
                     <div><img src="images/<?= $book->cover_filename ?>" /></div>
                     <div class="input">
                         <label class="special" for="image">Image (optional):</label>
