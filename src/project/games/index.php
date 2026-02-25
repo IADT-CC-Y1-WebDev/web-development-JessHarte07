@@ -67,6 +67,7 @@ catch (PDOException $e) {
                         <div class="card">
                             <div class="top-content">
                                 <h2>Title: <?= h($game->title) ?></h2>
+                                
                                 <p>Release Year: <?= h($game->release_date) ?></p>
                             </div>
                             <div class="bottom-content">
