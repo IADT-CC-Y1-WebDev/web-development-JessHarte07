@@ -5,19 +5,19 @@ require_once 'php/lib/forms.php';
 require_once 'php/lib/utils.php';
 
 startSession();
-
+dd($_SESSION);
 try {
-    if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-        throw new Exception('Invalid request method.');
-    }
-    if (!array_key_exists('id', $_GET)) {
-        throw new Exception('No book ID provided.');
-    }
+     if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+         throw new Exception('Invalid request method.');
+     }
+     if (!array_key_exists('id', $_GET)) {
+         throw new Exception('No book ID provided.');
+     }
     $id = $_GET['id'];
 
     $book = Book::findById($id);
-    if ($book === null) {
-        throw new Exception("Book not found.");
+     if ($book === null) {
+         throw new Exception("Book not found.");
     }
 
     $publishers = Publisher::findAll();
@@ -50,7 +50,8 @@ catch (PDOException $e) {
                 <h1>Edit Book</h1>
             </div>
             <div class="width-12">
-                <form action="book_edit.php" method="POST" enctype="multipart/form-data">
+                <form action="book_update.php" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" id="id" name="id" value="<?= old('id', $book->id) ?>" required>
                     <div class="input">
                         <label class="special" for="title">Title:</label>
                         <div>
@@ -71,6 +72,7 @@ catch (PDOException $e) {
                             <option value="">-- Select Publisher --</option>
                             <?php foreach ($publishers as $pub): ?>
                                 <option value="<?= $pub->id ?>">
+                                    
                                     <?= chosen('publisher_id', $pub->id) ? 'selected' : '' ?>
                                     <?= h($pub->name) ?>
                                 </option>
@@ -126,15 +128,17 @@ catch (PDOException $e) {
                     </div>
                    
                     
+                    <div><img src="images/<?= $book->cover_filename ?>" /></div>
                     <div class="input">
-                        <label class="special" for="image">Image (required):</label>
+                        <label class="special" for="image">Image (optional):</label>
                         <div>
-                            <input type="file" id="image" name="image" accept="image/*" required>
+                            <input type="file" id="image" name="image" accept="image/*">
                             <p><?= error('image') ?></p>
                         </div>
                     </div>
+                    
                     <div class="input">
-                        <button  class="button" type="submit">Store Book</button>
+                        <button  class="button" type="submit">Update Book</button>
                         <div class="button"><a href="index.php">Cancel</a></div>
                     </div>
                 </form>

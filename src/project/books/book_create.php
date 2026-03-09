@@ -30,7 +30,7 @@ catch (PDOException $e) {
                 <h1>Create Book</h1>
             </div>
             <div class="width-12">
-                <form action="book_store.php" method="POST" enctype="multipart/form-data">
+                <form action="book_store.php" method="POST" enctype="multipart/form-data" novalidate>
                     <div class="input">
                         <label class="special" for="title">Title:</label>
                         <div>
@@ -46,7 +46,7 @@ catch (PDOException $e) {
                         </div>
                     </div>
                     <div class="input">
-                        <label for="publisher_id">Publisher:</label>
+                        <label class="special" for="publisher_id">Publisher:</label>
                         <select id="publisher_id" name="publisher_id">
                             <option value="">-- Select Publisher --</option>
                             <?php foreach ($publishers as $pub): ?>

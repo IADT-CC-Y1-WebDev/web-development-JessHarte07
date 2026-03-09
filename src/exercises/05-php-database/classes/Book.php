@@ -33,7 +33,7 @@ class Book
     public $year;
     public $isbn;
     public $description;
-    public $;
+    public $cover_filename;
 
     // private $db property for database connection
     private $db;

@@ -71,7 +71,7 @@ catch (PDOException $e) {
                     <?php foreach ($books as $book) { ?>
                         <div class="card">
                             <div class="top-content">
-                                <h2>Title: <?= h($book->title) ?></h2>
+                                <h2> <?= h($book->title) ?></h2>
                                 <p>Author: <?= h($book->author) ?></p>
                             </div>
                             <div class="bottom-content">
