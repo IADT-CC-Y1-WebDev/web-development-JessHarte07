@@ -23,7 +23,7 @@ try {
     $publishers = Publisher::findAll();
     $formats = Format::findAll();
     $bookFormatsIds = [];
-    foreach ($bookFormat as $format) {
+    foreach ($bookFormatsIds as $format) {
         $bookFormatsIds[] = $format->id;
     }
 
@@ -54,14 +54,14 @@ catch (PDOException $e) {
                     <div class="input">
                         <label class="special" for="title">Title:</label>
                         <div>
-                            <input type="text" id="title" name="title" value="<?= old('title') ?>" required>
+                            <input type="text" id="title" name="title" value="<?= old('title', $book->title) ?>" required>
                             <p><?= error('title') ?></p>
                         </div>
                     </div>
                     <div class="input">
                         <label class="special" for="author">Author:</label>
                         <div>
-                            <input type="text" id="author" name="author" value="<?= old('author') ?>" required>
+                            <input type="text" id="author" name="author" value="<?= old('author', $book->author) ?>" required>
                             <p><?= error('author') ?></p>
                         </div>
                     </div>
@@ -82,7 +82,7 @@ catch (PDOException $e) {
                     <div class="input">
                         <label class="special" for="year">Year:</label>
                         <div>
-                            <input type="number" id="year" name="year" min="1900" max="2099" step="1" value="<?= old('year') ?>" required>
+                            <input type="number" id="year" name="year" min="1900" max="2099" step="1" value="<?= old('year', $book->year) ?>" required>
                             <p><?= error('year') ?></p>
                         </div>
                     </div>
@@ -90,7 +90,7 @@ catch (PDOException $e) {
                     <div class="input">
                         <label class="special" for="isbn">ISBN:</label>
                         <div>
-                            <input type="1234567890123" id="isbn" name="isbn" value="<?= old('isbn') ?>" required>
+                            <input type="1234567890123" id="isbn" name="isbn" value="<?= old('isbn', $book->isbn) ?>" required>
                             <p><?= error('isbn') ?></p>
                         </div>
                     </div>
@@ -98,7 +98,7 @@ catch (PDOException $e) {
                     <div class="input">
                         <label class="special" for="description">Description:</label>
                         <div>
-                            <textarea id="description" name="description" required><?= old('description') ?></textarea>
+                            <textarea id="description" name="description" required><?= old('description', $book->description) ?></textarea>
                             <p><?= error('description') ?></p>
                         </div>
                     </div>
