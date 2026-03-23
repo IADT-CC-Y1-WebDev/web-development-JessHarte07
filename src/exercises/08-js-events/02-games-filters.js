@@ -1,7 +1,7 @@
 let applyBtn = document.getElementById('apply_filters');
 let clearBtn = document.getElementById('clear_filters');
 
-let cards = document.querySelectorAll('.card');
+let cards = document.querySelectorAll(".card");
 
 let form = document.getElementById("filters");
 
@@ -40,7 +40,7 @@ function getFilters (){
     const platformEl = form.elements['platform_filter'];
     const sortEl = form.elements['sort_by'];
 
-    let titleFilter = (titleEl.value || '').trim().toLowercase();
+    let titleFilter = (titleEl.value || '').trim().toLowerCase();
     let genreFilter = genreEl.value || '';
     let platformFilter = platformEl.value || '';
     let sortBy = sortEl.value || 'title_asc';
