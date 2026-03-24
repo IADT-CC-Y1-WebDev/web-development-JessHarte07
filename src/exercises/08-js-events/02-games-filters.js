@@ -26,6 +26,9 @@ function applyFilters(){
         let match = cardMatches(card, filters);
         card.classList.toggle('hidden', !match)
     }
+    let cardsArray = Array.from(cards);
+
+    const sorted = sortCards(cardsArray, filters.sortBy)
     console.log(matches);
 
 }
@@ -68,19 +71,20 @@ function clearFilters (){
 
 
 function sortCards (cards, sortBy){
-    const list = cards.slice()
+    const list = cards.slice();
 
-    list.sort((a,b) => 
-            let titleA = a.dataset.title.toLowerCase{};
-            let titleB = b.dataset.title.toLowerCase{};
+    list.sort((a,b) => {
+            let titleA = a.dataset.title.toLowerCase();
+            let titleB = b.dataset.title.toLowerCase();
             let yearA = Number(a.dataset.year);
             let yearB = Number(b.dataset.year);
 
             if (sortBy == "year_desc") return yearB - yearA;
             if (sortBy == "year_asc") return yearA - yearB;
 
-            return titleA.localeCompare(titleB));
+            return titleA.localeCompare(titleB);
+        });
 
         
-    return list
+    
 }
