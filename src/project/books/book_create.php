@@ -120,6 +120,7 @@ catch (PDOException $e) {
                 </form>
             </div>
         </div>
+        <script src="js/book_validation.js"></script>
     </body>
 </html>
 <?php

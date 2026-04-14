@@ -1,22 +1,26 @@
 // 09-2: Games-style form validation (formHandler pattern)
 
 let submitBtn = document.getElementById('submit_btn');
-let gameForm = document.getElementById('game_form');
+let bookForm = document.getElementById('book_form');
 let errorSummaryTop = document.getElementById('error_summary_top');
 
 let titleInput = document.getElementById('title');
-let releaseDateInput = document.getElementById('release_date');
-let genreIdInput = document.getElementById('genre_id');
+let yearInput = document.getElementById('year');
+let publisherIdInput = document.getElementById('publisher_id');
 let descriptionInput = document.getElementById('description');
-let platformIdsInput = document.getElementsByName('platform_ids[]');
+let formatIdsInput = document.getElementsByName('format_ids[]');
 let imageInput = document.getElementById('image');
+let isbnInput = document.getElementById('isbn');
+let authorInput = document.getElementById('author');
 
 let titleError = document.getElementById('title_error');
-let releaseDateError = document.getElementById('release_date_error');
-let genreIdError = document.getElementById('genre_id_error');
+let yearError = document.getElementById('year_error');
+let publisherIdError = document.getElementById('publisher_id_error');
 let descriptionError = document.getElementById('description_error');
-let platformIdsError = document.getElementById('platform_ids_error');
+let formatIdsError = document.getElementById('format_ids_error');
+let isbnError = document.getElementById('isbn_error');
 let imageError = document.getElementById('image_error');
+let authorError = document.getElementById('author_error');
 
 let errors = {};
 
@@ -46,11 +50,13 @@ function showErrorSummaryTop() {
 
 function showFieldErrors() {
     titleError.innerHTML = errors.title || '';
-    releaseDateError.innerHTML = errors.release_date || '';
-    genreIdError.innerHTML = errors.genre_id || '';
+    yearError.innerHTML = errors.year || '';
+    publisherIdError.innerHTML = errors.publisher_id || '';
     descriptionError.innerHTML = errors.description || '';
-    platformIdsError.innerHTML = errors.platform_ids || '';
+    formatIdsError.innerHTML = errors.format_ids || '';
     imageError.innerHTML = errors.image || '';
+    isbnError.innerHTML = errors.isbn || '';
+    authorError.innerHTML = errors.author || '';
 }
 
 function isRequired(value) {
@@ -72,6 +78,8 @@ function onSubmitForm(evt) {
 
    let titleMin = titleInput.dataset.minlength ||3;
     let titleMax = titleInput.dataset.maxlength ||255;
+    let isbnMin = isbnInput.dataset.minlength ||13;
+    let isbnMax = isbnInput.dataset.maxlength ||13;
     let descMin = 10;
 
     
@@ -86,20 +94,31 @@ function onSubmitForm(evt) {
     } else if (!isMaxLength(titleInput.value, titleMax)) {
         addError('title', 'Title must be at most ' + titleMax + ' characters.');
     }
+//isbn
+    if (!isRequired(isbnInput.value)) {
+        addError('title', 'Title is required.');
+    } else if (!isMinLength(isbnInput.value, isbnMin)) {
+        addError(
+            'ISBN',
+            'Isbn must be at least ' + isbnMin + ' characters.'
+        );
+    } else if (!isMaxLength(isbnInput.value, isbnMax)) {
+        addError('ISBN', 'Isbn must be at most ' + isbnMax + ' characters.');
+    }
 
-    // release_date
-    if (!isRequired(releaseDateInput.value)) {
-        addError('release_date', 'Release year is required.');
+    // year
+    if (!isRequired(yearInput.value)) {
+        addError('year', 'Release year is required.');
     } else {
-        const date = new Date(releaseDateInput.value);
+        const date = new Date(yearInput.value);
         if (Number.isNaN(date.getTime())) {
-            addError('release_date', 'Please enter a valid date.');
+            addError('year', 'Please enter a valid date.');
         }
     }
 
-    // genre_id
-    if (!isRequired(genreIdInput.value)) {
-        addError('genre_id', 'Genre is required.');
+    // Publisher
+    if (!isRequired(publisherIdInput.value)) {
+        addError('publisher_id', 'publisher is required.');
     }
 
     // description
@@ -113,15 +132,15 @@ function onSubmitForm(evt) {
     }
 
     // platform_ids
-    let platformChecked = false;
-    for (let i = 0; i < platformIdsInput.length; i++) {
-        if (platformIdsInput[i].checked) {
-            platformChecked = true;
+    let formatChecked = false;
+    for (let i = 0; i < formatIdsInput.length; i++) {
+        if (formatIdsInput[i].checked) {
+            formatChecked = true;
             break;
         }
     }
-    if (!platformChecked) {
-        addError('platform_ids', 'Select at least one platform.');
+    if (!formatChecked) {
+        addError('format_ids', 'Select at least one format.');
     }
 
     // image
@@ -134,7 +153,7 @@ function onSubmitForm(evt) {
 
     if (Object.keys(errors).length === 0) {
         alert(
-            'Game form is valid. In a real app, this would submit to the server.'
+            'Book form is valid. In a real app, this would submit to the server.'
         );
         // gameForm.submit();
     }
