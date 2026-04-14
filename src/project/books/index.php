@@ -4,9 +4,8 @@ require_once 'php/lib/utils.php';
 
 try {
     $books = Book::findAll();
-    // $authors = Author::findAll();
-    // $genres = Genre::findAll();
-    // $platforms = Platform::findAll();
+    $publishers = Publisher::findAll();
+    $formats = Format::findAll();
 } 
 catch (PDOException $e) {
     die("<p>PDO Exception: " . $e->getMessage() . "</p>");
@@ -28,37 +27,47 @@ catch (PDOException $e) {
             </div>
             <?php if (!empty($books)) { ?>
                 <div class="width-12 filters">
-                    <form>
-                        <div>
+                    <form id="filters">
+                        <div class="input">
+                        
                             <label for="title_filter">Title:</label>
                             <input type="text" id="title_filter" name="title_filter">
                         </div>
-                        <div>
-                            <label for="author_filter">Author:</label>
-                            <select id="author_filter" name="author_filter">
-                                <option value="">All Authors</option>
-
-
-                                <!-- <?php foreach ($genres as $genre) { ?>
-                                    <option value="<?= h($genre->id) ?>"><?= h($genre->name) ?></option>
-                                <?php } ?> -->
-                            </select>
-                        </div>
-                        <!-- <div>
-                            <label for="platform_filter">Platform:</label>
-                            <select id="platform_filter" name="platform_filter">
-                                <option value="">All Platforms</option>
-                                <?php foreach ($platforms as $platform) { ?>
-                                    <option value="<?= h($platform->id) ?>"><?= h($platform->name) ?></option>
+                        <div class="input">
+                            <label for="publisher_filter">Publishers:</label>
+                            <select id="publisher_filter" name="publisher_filter">
+                                <option value="">All Publishers</option>
+                                <?php foreach ($publishers as $publisher) { ?>
+                                    <option value="<?= h($publisher->id) ?>"><?= h($publisher->name) ?></option>
                                 <?php } ?>
                             </select>
-                        </div> -->
-
-                        
-                        <div>
-                            <button type="button" id="apply_filters">Apply Filters</button>
-                            <button type="button" id="clear_filters">Clear Filters</button>
                         </div>
+        <div class="input">
+                            <label for="format_filter">Format:</label>
+                            <select id="format_filter" name="format_filter">
+                                <option value="">All Formats</option>
+                                <?php foreach ($formats as $format) { ?>
+                                    <option value="<?= h($format->id) ?>"><?= h($format->name) ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+        <div class="input">
+            <label class="filter-label" for="sort_by">Sort:</label>
+            <div>
+                <select id="sort_by" name="sort_by">
+                    <option value="title_asc">Title A–Z</option>
+                    <option value="year_desc">Year (newest first)</option>
+                    <option value="year_asc">Year (oldest first)</option>
+                </select>
+            </div>
+        </div>
+       
+           
+            <div>
+                <button type="button" id="apply_filters">Apply Filters</button>
+                <button type="button" id="clear_filters">Clear Filters</button>
+            </div>
+        
                     </form>
                 </div>
             <?php } ?>
@@ -67,9 +76,13 @@ catch (PDOException $e) {
             <?php if (empty($books)) { ?>
                 <p>No books found.</p>
             <?php } else { ?>
-                <div class="width-12 cards">
+                <div id="book_cards" class="width-12 cards">
                     <?php foreach ($books as $book) { ?>
-                        <div class="card">
+                        <div class="card"
+                         data-title="<?= htmlspecialchars($book->title)?>"
+                         data-publisher="<?= htmlspecialchars($book->publisher_id)?>"
+                         data-format="<?= htmlspecialchars($format->name)?>"
+                         data-year ="<?= $book->year?>">
                             <div class="top-content">
                                 <h2> <?= h($book->title) ?></h2>
                                 <p>Author: <?= h($book->author) ?></p>
@@ -87,5 +100,6 @@ catch (PDOException $e) {
                 </div>
             <?php } ?>
         </div>
+      <script src="js/book_filters.js"></script>
     </body>
 </html>

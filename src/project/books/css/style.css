@@ -61,6 +61,10 @@ body {
 	height: 340px;
 }
 
+.card.hidden {
+	display:none;
+}
+
 .filters {
 	background-color: #f2f2f2;
 	padding: 10px;
