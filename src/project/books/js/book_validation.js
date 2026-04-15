@@ -94,16 +94,18 @@ function onSubmitForm(evt) {
     } else if (!isMaxLength(titleInput.value, titleMax)) {
         addError('title', 'Title must be at most ' + titleMax + ' characters.');
     }
-//isbn
+
+    //isbn
     if (!isRequired(isbnInput.value)) {
-        addError('title', 'Title is required.');
-    } else if (!isMinLength(isbnInput.value, isbnMin)) {
+        addError('isbn', 'ISBN is required.');
+    }
+    else if (!isMinLength(isbnInput.value, isbnMin)) {
         addError(
-            'ISBN',
+            'isbn',
             'Isbn must be at least ' + isbnMin + ' characters.'
         );
     } else if (!isMaxLength(isbnInput.value, isbnMax)) {
-        addError('ISBN', 'Isbn must be at most ' + isbnMax + ' characters.');
+        addError('isbn', 'Isbn must be at most ' + isbnMax + ' characters.');
     }
 
     // year
@@ -114,11 +116,19 @@ function onSubmitForm(evt) {
         if (Number.isNaN(date.getTime())) {
             addError('year', 'Please enter a valid date.');
         }
+        let year = date.getFullYear();
+        let today = new Date();
+        if (year < 1900) {
+            addError('year', 'Please enter a year greater than or equal to 1900.');
+        }
+        else if (year > today.getFullYear()) {
+            addError('year', 'Please enter a year less than or equal to ' + today.getFullYear() + '.');
+        }
     }
 
     // Publisher
     if (!isRequired(publisherIdInput.value)) {
-        addError('publisher_id', 'publisher is required.');
+        addError('publisher_id', 'Publisher is required.');
     }
 
     // description
@@ -152,9 +162,9 @@ function onSubmitForm(evt) {
     showFieldErrors();
 
     if (Object.keys(errors).length === 0) {
-        alert(
-            'Book form is valid. In a real app, this would submit to the server.'
-        );
-        // gameForm.submit();
+        // alert(
+        //     'Book form is valid. In a real app, this would submit to the server.'
+        // );
+        bookForm.submit();
     }
 }

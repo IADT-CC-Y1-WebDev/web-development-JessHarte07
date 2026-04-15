@@ -112,7 +112,11 @@ class Validator {
     }
 
     private function validateRequired($field, $value) {
-        if ($value === null || $value === '' || (is_array($value) && empty($value))) {
+        if ($value === null || 
+            $value === '' || 
+            (is_array($value) && empty($value)) || 
+            (is_array($value) && array_key_exists('error', $value) && $value['error'] === UPLOAD_ERR_NO_FILE))
+        {
             $this->addError($field, "The $field field is required.");
         }
     }

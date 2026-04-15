@@ -5,7 +5,6 @@ require_once 'php/lib/forms.php';
 require_once 'php/lib/utils.php';
 
 startSession();
-dd($_SESSION);
 try {
      if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
          throw new Exception('Invalid request method.');
@@ -19,20 +18,20 @@ try {
      if ($book === null) {
          throw new Exception("Book not found.");
     }
-
-    $publishers = Publisher::findAll();
-    $formats = Format::findAll();
+    
+    $bookFormats = Format::findByBook($id);
     $bookFormatsIds = [];
-    foreach ($bookFormatsIds as $format) {
+    foreach ($bookFormats as $format) {
         $bookFormatsIds[] = $format->id;
     }
 
     $publishers = Publisher::findAll();
+
     $formats = Format::findAll();
    }
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
-    redirect('/index.php');
+    //redirect('/index.php');
 }
 ?>
 <!DOCTYPE html>
@@ -71,9 +70,9 @@ catch (PDOException $e) {
                         <select id="publisher_id" name="publisher_id">
                             <option value="">-- Select Publisher --</option>
                             <?php foreach ($publishers as $pub): ?>
-                                <option value="<?= $pub->id ?>">
-                                    
-                                    <?= chosen('publisher_id', $pub->id) ? 'selected' : '' ?>
+                                <option value="<?= $pub->id ?>"
+                                    <?= chosen('publisher_id', $pub->id, $book->publisher_id) ? 'selected' : '' ?>
+                                >
                                     <?= h($pub->name) ?>
                                 </option>
                             <?php endforeach; ?>
@@ -111,9 +110,9 @@ catch (PDOException $e) {
                             <?php foreach ($formats as $format): ?>
                                 <label class="checkbox-label">
                                     <input type="checkbox" 
-                                    name="format_ids[]" 
-                                    value="<?= $format->id ?>"
-                                    <?= chosen('format_id', $format->id) ? "checked" : "" ?>
+                                        name="format_ids[]" 
+                                        value="<?= $format->id ?>"
+                                        <?= chosen('format_ids', $format->id, $bookFormatsIds) ? "checked" : "" ?>
                                     >
                                     <?= h($format->name) ?>
                                 </label>
