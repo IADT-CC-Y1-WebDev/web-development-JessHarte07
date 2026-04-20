@@ -3,7 +3,9 @@ body {
 	font-size: 16px;
 	font-weight: 400;
 	line-height: 1.5em;
-	background-color: #fff;
+	background-image: url(../images/bookshelf2.avif) ;
+	background-size: contain;
+	background-repeat: repeat;
 }
 
 .cards {
@@ -13,10 +15,12 @@ body {
 }
 
 .card {
-	background-color: #f4f4f4;
+	background-image: url(../images/skyrim-paper.png); 
+	background-size: contain;
+
 	padding: 16px;
 	border-radius: 7px;
-	border: 1px solid #bcbcbc;
+	
 	width: 285px;
 	display: flex;
 	flex-direction: column;
@@ -112,10 +116,10 @@ body {
 
 .button {
 	font-size: 13px;
-	background-color: #123991;
+	background-color: #412301;
 	padding: 5px 10px;
 	color: #ececec;
-	border: 1px solid #4bff3c;
+	border: 1px solid #47340b;
 	border-radius: 5px;
 }
 
@@ -191,6 +195,20 @@ form {
 	width: 108px;
 	display: flex;
 	justify-content: flex-end;
-	color: #252525;
+	color: #ffffff;
 	font-weight: 900;
+}
+
+label{
+	color: white;
+}
+
+.input-img{
+	display: flex;
+    gap: 20px;
+	color: white;
+}
+
+h1 {
+	color: white;
 }
