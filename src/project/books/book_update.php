@@ -72,6 +72,7 @@ try {
     // Update the book instance
     $book->title = $data['title'];
     $book->author = $data['author'];
+    $book->year = $data['year'];
     $book->description = $data['description'];
     if ($imageFilename) {
         $book->cover_filename = $imageFilename;
