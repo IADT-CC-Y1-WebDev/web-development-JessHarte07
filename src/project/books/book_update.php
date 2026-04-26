@@ -22,17 +22,17 @@ try {
         'id' => $_POST['id'] ?? null,
         'title' => $_POST['title'] ?? null,
         'author' => $_POST['author'] ?? null,
+        'year' => $_POST['year'] ?? null,
         'description' => $_POST['description'] ?? null,
         'image' => $_FILES['image'] ?? null
     ];
-
-    // Define validation rules
-    $rules = [
+    // form rules to ensure datas good n  can be saved
+   $rules = [
         'id' => 'required|integer',
         'title' => 'required|notempty|min:1|max:255',
         'author' => 'required|notempty',
-        'description' => 'required|notempty|min:10|max:5000',
-        'image' => 'file|image|mimes:jpg,jpeg,png|max_file_size:5242880' // optional -- no required rule
+        'year' => 'required|notempty|integer|minvalue:1900|maxvalue:2099', 
+        'image' => 'file|image|mimes:jpg,jpeg,png|max_file_size:5242880'
     ];
 
     // Validate all data (including file)

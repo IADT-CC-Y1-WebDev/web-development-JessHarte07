@@ -70,7 +70,7 @@ body {
 }
 
 .filters {
-	background-color: #f2f2f2;
+	background-color: rgb(41, 1, 1, 0.5);
 	padding: 10px;
 	display: flex;
 	justify-content: flex-end;
@@ -101,17 +101,24 @@ body {
 
 .filters form button {
 	font-size: 13px;
-	background-color: #084108;
+	background-color: #413308;
 	padding: 5px 10px;
 	color: #ececec;
-	border: 1px solid #4bff3c;
+	border: 1px solid #ffd53c;
 	border-radius: 5px;
 }
 
 .header {
 	display: flex;
-	align-items: baseline;
-	justify-content: space-between;
+	align-items: center;
+	justify-content: right;
+}
+
+.header h1 {
+	margin-left: 400px;
+	font-size: 50px;
+	color: beige;
+	font-family: 'Times New Roman', Times, serif;
 }
 
 .button {
@@ -211,4 +218,24 @@ label{
 
 h1 {
 	color: white;
+}
+
+.error-summary {
+    background-image: url(../images/very-old-paper-with-transparent-background-image-20.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+   padding: 60px;
+    border-radius: 8px;
+}
+
+.error-summary ul, strong {
+	margin-left: 473px;
+	font-size: 20px;
+	line-height: 20px;
 }
