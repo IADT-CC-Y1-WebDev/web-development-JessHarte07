@@ -64,9 +64,7 @@ function cardMatches(crd, fltrs){
     let matchPublisher =fltrs.publisherFilter === "" ||publisher === fltrs.publisherFilter;
 
     let matchFormat =fltrs.formatFilter === "" ||formats.includes(fltrs.formatFilter);
-        console.log('Card:', crd.dataset.title);
-console.log('format_ids on card:', crd.dataset.format);
-console.log('filter value:', fltrs.formatFilter);
+        
 
 
     return matchTitle && matchPublisher && matchFormat;

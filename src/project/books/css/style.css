@@ -121,6 +121,10 @@ body {
 	font-family: 'Times New Roman', Times, serif;
 }
 
+.header .button {
+	margin-left: 400px;
+}
+
 .button {
 	font-size: 13px;
 	background-color: #412301;

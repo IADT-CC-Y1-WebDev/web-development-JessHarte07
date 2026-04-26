@@ -162,9 +162,7 @@ function onSubmitForm(evt) {
     showFieldErrors();
 
     if (Object.keys(errors).length === 0) {
-        // alert(
-        //     'Book form is valid. In a real app, this would submit to the server.'
-        // );
+      
         bookForm.submit();
     }
 }

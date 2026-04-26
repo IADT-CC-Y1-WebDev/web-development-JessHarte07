@@ -74,15 +74,7 @@ try {
 
     // Save to database
     $book->save();
-    // Create platform associations
-    // if (!empty($data['platform_ids']) && is_array($data['platform_ids'])) {
-    //     foreach ($data['platform_ids'] as $platformId) {
-    //         // Verify platform exists before creating relationship
-    //         if (Platform::findById($platformId)) {
-    //             BookPlatform::create($book->id, $platformId);
-    //         }
-    //     }
-    // }
+    
 
     // Clear any old form data
     clearFormData();

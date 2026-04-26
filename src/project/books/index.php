@@ -25,10 +25,11 @@ catch (PDOException $e) {
     </head>
     <body>
         <div class="container">
+            <!-- show flash messages (success/error) -->
+                <?php require 'php/inc/flash_message.php'; ?>
             <div class="width-12 header">
                 <h1> HERE YE!</H1>
-                <!-- show flash messages (success/error) -->
-                <?php require 'php/inc/flash_message.php'; ?>
+                
 
                 <!-- button to go to create book page -->
                 <div class="button">

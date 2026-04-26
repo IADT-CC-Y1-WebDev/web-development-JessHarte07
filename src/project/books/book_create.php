@@ -51,11 +51,7 @@ catch (PDOException $e) {
     <div class="width-12">
 
         <!-- book creation form -->
-        <form action="book_store.php"
-              id="book_form"
-              method="POST"
-              enctype="multipart/form-data"
-              novalidate>
+        <form action="book_store.php" id="book_form" method="POST" enctype="multipart/form-data" novalidate>
 
             <!-- error summary box (JS will show this if validation fails) -->
             <div id="error_summary_top" class="error-summary" style="display:none" role="alert"></div>
