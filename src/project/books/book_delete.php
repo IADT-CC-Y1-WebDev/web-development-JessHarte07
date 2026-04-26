@@ -1,37 +1,48 @@
 <?php
+
+// load database config + connection
 require_once 'php/lib/config.php';
+
+// session system (flash messages, redirects, etc.)
 require_once 'php/lib/session.php';
+
+// form helper functions (old(), error(), chosen(), etc.)
 require_once 'php/lib/forms.php';
+
+// utility functions (redirect, helpers, etc.)
 require_once 'php/lib/utils.php';
 
+// start session so flash messages work
 startSession();
 
 try {
-    // Initialize form data array
+
+    // storage for incoming request data
     $data = [];
-    // Initialize errors array
+
+    // storage for validation errors
     $errors = [];
-    
-    // Check if request is GET
+
+    // only allow GET requests for delete action
     if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
         throw new Exception('Invalid request method.');
     }
 
-    // Get form data
+    // get book id from URL
     $data = [
         'id' => $_GET['id'] ?? null
     ];
 
-    // Define validation rules
+    // validation rules for id
     $rules = [
         'id' => 'required|integer'
     ];
 
-    // Validate all data (including file)
+    // run validation
     $validator = new Validator($data, $rules);
 
+    // if validation fails, collect errors
     if ($validator->fails()) {
-        // Get first error for each field
         foreach ($validator->errors() as $field => $fieldErrors) {
             $errors[$field] = $fieldErrors[0];
         }
@@ -39,40 +50,48 @@ try {
         throw new Exception('Validation failed.');
     }
 
-    // Find existing book
+    // find book in database
     $book = Book::findById($data['id']);
+
+    // if book does not exist, stop
     if (!$book) {
         throw new Exception('Book not found.');
     }
 
-    // Delete the associated image file if it exists
+    // delete image file from server if it exists
     if ($book->cover_filename) {
         $uploader = new ImageUpload();
         $uploader->deleteImage($book->cover_filename);
     }
-    // Delete the book
+
+    // delete book record from database
     $book->delete();
 
-    // Clear any old form data
+    // clear any stored form data
     clearFormData();
-    // Clear any old errors
+
+    // clear any stored validation errors
     clearFormErrors();
 
-    // Set success flash message
+    // success message for user
     setFlashMessage('success', 'Book deleted successfully.');
 
-    // Redirect to book details page
+    // redirect back to main book list
     redirect('index.php');
+
 }
 catch (Exception $e) {
-    // Set error flash message
+
+    // error message for user
     setFlashMessage('error', 'Error: ' . $e->getMessage());
 
-    // Store form data and errors in session
+    // store form data for debugging / retry
     setFormData($data);
+
+    // store validation errors
     setFormErrors($errors);
 
-    // Redirect back to view page if there is an ID; otherwise, go to index page
+    // if we still have an id, go back to view page
     if (isset($data['id']) && $data['id']) {
         redirect('book_view.php?id=' . $data['id']);
     }
