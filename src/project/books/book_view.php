@@ -85,10 +85,7 @@ catch (PDOException $e) {
                     Description:<br />
                     <?= nl2br(htmlspecialchars($book->description)) ?>
                 </p>
-
-                <!-- (Optional) platforms list - currently disabled -->
-                <!-- <p>Platforms: <?= implode(', ', $platformNames) ?></p> -->
-
+                
             </div>
 
         </div>

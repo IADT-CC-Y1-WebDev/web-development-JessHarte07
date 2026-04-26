@@ -33,7 +33,7 @@ body {
 	font-family: "IBM Plex Serif";
 	margin-bottom: 12px;
 	font-weight: 300;
-	color: #016040;
+	color: #714c03;
 }
 
 .card p {
@@ -48,7 +48,7 @@ body {
 
 .card .actions a {
 	font-weight: 600;
-	color: #b0acfa;
+	color: #412301;
 	font-size: 13px;
 	text-transform: uppercase;
 }
@@ -61,7 +61,7 @@ body {
 	width: 100%;
 	margin-bottom: 10px;
 	object-fit: cover;
-	border: 1px solid #7c75f1;
+	border: 1px solid #412301;
 	height: 340px;
 }
 
@@ -131,10 +131,11 @@ body {
 }
 
 .hCard {
-	background-color: #f4f4f4;
+	background-image: url(../images/skyrim-paper.png);
+	background-repeat: no-repeat;
+	background-size: cover;
 	padding: 16px;
 	border-radius: 7px;
-	border: 1px solid #bcbcbc;
 	width: 800px;
 	display: flex;
 	gap: 20px;
@@ -148,7 +149,7 @@ body {
 	font-family: "IBM Plex Serif";
 	margin-bottom: 12px;
 	font-weight: 300;
-	color: #016040;
+	color: #846f03;
 }
 
 .hCard p {
@@ -163,7 +164,7 @@ body {
 
 .hCard .actions a {
 	font-weight: 600;
-	color: #b0acfa;
+	color: #28221a;
 	font-size: 13px;
 	text-transform: uppercase;
 }
@@ -176,8 +177,8 @@ body {
 	width: 340px;
 	margin-bottom: 10px;
 	object-fit: cover;
-	border: 1px solid #7c75f1;
 	height: 340px;
+	border-radius: 5px;
 }
 
 form {
